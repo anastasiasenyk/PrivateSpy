@@ -1,15 +1,11 @@
 package com.middle.htmlparser.Chain;
 
-import com.middle.htmlparser.PrivateSpy.PrivateSpy;
-import com.middle.htmlparser.Social.GetTwitter;
-import org.springframework.core.SpringVersion;
-
 public class ChainWrapper {
     Chain firstChain;
-    private static Chain getSocial = new GetSocial();
-    private static Chain getMedia = new GetMedia();
-    private static Chain getEmployees = new GetEmployees();
-    private static Chain getAddress = new GetAddress();
+    private static final Chain getSocial = new GetSocial();
+    private static final Chain getMedia = new GetMedia();
+    private static final Chain getEmployees = new GetEmployees();
+    private static final Chain getAddress = new GetAddress();
 
     public ChainWrapper(Chain firstChain) {
         this.firstChain = firstChain;
