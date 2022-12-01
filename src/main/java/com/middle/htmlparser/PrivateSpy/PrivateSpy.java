@@ -1,6 +1,7 @@
 package com.middle.htmlparser.PrivateSpy;
 
 import com.middle.htmlparser.Chain.Chain;
+import com.middle.htmlparser.Chain.ChainWrapper;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,8 @@ public class PrivateSpy {
 
     @Transient
     private Chain firstChain;
+    @Transient
+    private ChainWrapper chainWrapper;
 
     public PrivateSpy(int id, String domain, String name, String address, String twitterUrl, String facebookUrl, String logo, String icon, String employees) {
         this.id = id;
@@ -48,6 +51,7 @@ public class PrivateSpy {
 
     public PrivateSpy(Chain firstChain) {
         this.firstChain = firstChain;
+        this.chainWrapper = new ChainWrapper(firstChain);
     }
 
     void findAll() {
