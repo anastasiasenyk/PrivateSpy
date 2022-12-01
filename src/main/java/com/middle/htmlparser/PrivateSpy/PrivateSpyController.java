@@ -1,16 +1,16 @@
 package com.middle.htmlparser.PrivateSpy;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping(path = "/info")
 public class PrivateSpyController {
-    private final PrivateSpyService privateSpyService;
+
+    private PrivateSpyService privateSpyService;
 
     @Autowired
     public PrivateSpyController(PrivateSpyService privateSpyService) {
@@ -18,7 +18,18 @@ public class PrivateSpyController {
     }
 
     @GetMapping
-    public List<String> getTable(){
-        return privateSpyService.getTable();
+    public List<PrivateSpy> getSuperSpies(){
+        return privateSpyService.getSuperSpies();
     }
+
+    @PostMapping
+    public void addSpy(@RequestBody PrivateSpy spy) {
+        privateSpyService.addSpy(spy);
+    }
+
+    @DeleteMapping(path = "{spyID}")
+    public void deleteSpy(@PathVariable("spyID") Integer spyID){
+        privateSpyService.deleteSpy(spyID);
+    }
+
 }

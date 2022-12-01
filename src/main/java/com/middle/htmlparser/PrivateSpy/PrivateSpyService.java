@@ -1,33 +1,38 @@
 package com.middle.htmlparser.PrivateSpy;
 
-
-import lombok.Getter;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 
 @Service
 public class PrivateSpyService {
-    @Getter
-    private final String url = "https://toscrape.com/";
-    private final List<String> content = new ArrayList<>();
+    public PrivateSpyRepository privateSpyRepository;
 
-    public List<String> getTable() {
-        try{
-            final Document document = Jsoup.connect(url).timeout(10000).userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36").get();
-            for( Element row: document.select("table.table.table-hover tr")){
-                final String ticker = row.select("td:nth-of-type(2)").text();
-                System.out.println(ticker);
-                content.add(ticker);
+    @Autowired
+    public PrivateSpyService(PrivateSpyRepository privateSpyRepository){
+        this.privateSpyRepository = privateSpyRepository;
+    }
 
-            }
-        }catch (Exception ex){
-            ex.printStackTrace();
+    public List<PrivateSpy> getSuperSpies(){
+        return privateSpyRepository.findAll();
+    }
+
+    public void addSpy(PrivateSpy spy) {
+
+        Optional<PrivateSpy> spyOptional = privateSpyRepository.findSpyById(spy.getId());
+        if (spyOptional.isPresent()){
+            throw new IllegalStateException("flower with this Id present");
         }
-        return content;
+        privateSpyRepository.save(spy);
+    }
+
+    public void deleteSpy(Integer spyID) {
+        if (!privateSpyRepository.existsById(spyID)){
+            throw new IllegalStateException("spy with this" + spyID + " does not exists");
+        }
+        privateSpyRepository.deleteById(spyID);
     }
 }
