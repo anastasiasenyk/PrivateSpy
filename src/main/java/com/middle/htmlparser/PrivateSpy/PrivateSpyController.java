@@ -23,13 +23,13 @@ public class PrivateSpyController {
     }
 
     @PostMapping
-    public void addSpy(@RequestBody PrivateSpy spy) {
-        privateSpyService.addSpy(spy);
+    public void addSpy(@RequestBody String domain) {
+        privateSpyService.addSpy(domain);
     }
 
     @DeleteMapping(path = "{spyID}")
     public void deleteSpy(@PathVariable("spyID") Integer spyID){
-        privateSpyService.deleteSpy(spyID);
+        privateSpyService.deleteSpyByID(spyID);
     }
 
 }

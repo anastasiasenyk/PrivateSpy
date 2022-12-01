@@ -2,6 +2,7 @@ package com.middle.htmlparser.Chain;
 
 import com.middle.htmlparser.Media.GetIcon;
 import com.middle.htmlparser.Media.GetLogo;
+import com.middle.htmlparser.PrivateSpy.PrivateSpy;
 
 public class GetMedia implements Chain{
     private GetIcon getIcon;
@@ -13,9 +14,8 @@ public class GetMedia implements Chain{
     }
 
     @Override
-    public String search() {
-//        String logo = getLogo.search(doc);
-//        String icon = getIcon.search(doc);
+    public String search(PrivateSpy spy) {
         return null;
     }
+
 }

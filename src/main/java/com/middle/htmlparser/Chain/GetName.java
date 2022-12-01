@@ -1,5 +1,7 @@
 package com.middle.htmlparser.Chain;
 
+import com.middle.htmlparser.PrivateSpy.PrivateSpy;
+
 public class GetName implements Chain {
     private Chain nextInChain;
 
@@ -9,8 +11,7 @@ public class GetName implements Chain {
     }
 
     @Override
-    public String search() {
-//        implement logic of searching domain name(probably another class)
+    public String search(PrivateSpy spy) {
         return null;
     }
 }

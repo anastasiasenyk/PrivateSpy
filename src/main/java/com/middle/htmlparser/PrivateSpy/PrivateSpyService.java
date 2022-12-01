@@ -1,5 +1,6 @@
 package com.middle.htmlparser.PrivateSpy;
 
+import com.middle.htmlparser.Chain.Chain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 @Service
 public class PrivateSpyService {
     public PrivateSpyRepository privateSpyRepository;
+    private PrivateSpy privateSpy;
 
     @Autowired
     public PrivateSpyService(PrivateSpyRepository privateSpyRepository){
@@ -20,16 +22,21 @@ public class PrivateSpyService {
         return privateSpyRepository.findAll();
     }
 
-    public void addSpy(PrivateSpy spy) {
-
-        Optional<PrivateSpy> spyOptional = privateSpyRepository.findSpyById(spy.getId());
+    public void addSpy(String domain) {
+        Optional<PrivateSpy> spyOptional = privateSpyRepository.findSpyByDomain(domain);
         if (spyOptional.isPresent()){
-            throw new IllegalStateException("flower with this Id present");
+            privateSpy.wrap(spyOptional.get());
+        } else {
+            int id = privateSpy.getId();
+            privateSpy.setId(++id);
+            privateSpy.deleteInfo();
+            privateSpy.findAll();
         }
-        privateSpyRepository.save(spy);
+
+        privateSpyRepository.save(privateSpy);
     }
 
-    public void deleteSpy(Integer spyID) {
+    public void deleteSpyByID(Integer spyID) {
         if (!privateSpyRepository.existsById(spyID)){
             throw new IllegalStateException("spy with this" + spyID + " does not exists");
         }

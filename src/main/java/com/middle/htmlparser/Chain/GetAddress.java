@@ -1,5 +1,7 @@
 package com.middle.htmlparser.Chain;
 
+import com.middle.htmlparser.PrivateSpy.PrivateSpy;
+
 public class GetAddress implements Chain{
     private Chain nextInChain;
     @Override
@@ -8,8 +10,7 @@ public class GetAddress implements Chain{
     }
 
     @Override
-    public String search() {
-//        implement logic of searching for address
+    public String search(PrivateSpy spy) {
         return null;
     }
 }
