@@ -9,7 +9,6 @@ import lombok.ToString;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
 @Setter @Getter @ToString
 @RestController
 @Table @Entity
@@ -29,12 +28,33 @@ public class PrivateSpy {
     private String icon;
 
     private String employees;
+
     @Transient
     private Chain firstChain;
+
+    public PrivateSpy(int id, String domain, String name, String address, String twitterUrl, String facebookUrl, String logo, String icon, String employees) {
+        this.id = id;
+        this.domain = domain;
+        this.name = name;
+        this.address = address;
+        this.twitterUrl = twitterUrl;
+        this.facebookUrl = facebookUrl;
+        this.logo = logo;
+        this.icon = icon;
+        this.employees = employees;
+    }
+
 
 
     public PrivateSpy(Chain firstChain) {
         this.firstChain = firstChain;
+    }
+
+    void findAll() {
+        firstChain.search(this);
+    }
+
+    void updateInfo() {
     }
 
     public void wrap(PrivateSpy spy) {
@@ -47,13 +67,6 @@ public class PrivateSpy {
         this.logo = spy.logo;
         this.icon = spy.icon;
         this.employees = spy.employees;
-    }
-
-    void findAll() {
-        firstChain.search(this);
-    }
-
-    void updateInfo() {
     }
 
     void deleteInfo() {

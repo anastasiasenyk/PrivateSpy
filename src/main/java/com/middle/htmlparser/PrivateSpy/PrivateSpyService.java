@@ -1,6 +1,5 @@
 package com.middle.htmlparser.PrivateSpy;
 
-import com.middle.htmlparser.Chain.Chain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +21,10 @@ public class PrivateSpyService {
         return privateSpyRepository.findAll();
     }
 
+    public Optional<PrivateSpy> getSuperSpy(String domain){
+        return privateSpyRepository.findSpyByDomain(domain);
+    }
+
     public void addSpy(String domain) {
         Optional<PrivateSpy> spyOptional = privateSpyRepository.findSpyByDomain(domain);
         if (spyOptional.isPresent()){
@@ -41,5 +44,12 @@ public class PrivateSpyService {
             throw new IllegalStateException("spy with this" + spyID + " does not exists");
         }
         privateSpyRepository.deleteById(spyID);
+    }
+
+    public void deleteSpyByDomain(String domain) {
+        if (privateSpyRepository.findSpyByDomain(domain).isPresent()){
+            throw new IllegalStateException("spy with this" + domain + " does not exists");
+        }
+        privateSpyRepository.deleteSpyByDomain(domain);
     }
 }
