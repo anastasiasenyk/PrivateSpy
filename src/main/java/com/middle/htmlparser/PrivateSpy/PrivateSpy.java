@@ -1,23 +1,36 @@
 package com.middle.htmlparser.PrivateSpy;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.middle.htmlparser.Chain.Chain;
 import com.middle.htmlparser.Chain.ChainWrapper;
+import com.middle.htmlparser.Chain.GetName;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.json.JSONException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 
 
 @Setter @Getter @ToString
 @RestController
 @Table @Entity
-@NoArgsConstructor
 public class PrivateSpy {
+    public static int num_inst=5;
     @Id
     @GeneratedValue
     private int id;
+
+    public void setDomain(String domain) throws IOException {
+        this.domain = domain;
+        this.document = Jsoup.connect(this.domain).get();
+    }
+
     private String domain;
     private String name;
     private String address;
@@ -29,11 +42,15 @@ public class PrivateSpy {
     private String icon;
 
     private String employees;
-
     @Transient
+    @JsonIgnore
     private Chain firstChain;
     @Transient
+    @JsonIgnore
     private ChainWrapper chainWrapper;
+    @Transient
+    @JsonIgnore
+    private Document document;
 
     public PrivateSpy(int id, String domain, String name, String address, String twitterUrl, String facebookUrl, String logo, String icon, String employees) {
         this.id = id;
@@ -49,17 +66,12 @@ public class PrivateSpy {
 
 
 
-    public PrivateSpy(Chain firstChain) {
-        this.firstChain = firstChain;
+    public PrivateSpy() throws IOException {
+
+        this.firstChain = new GetName();
         this.chainWrapper = new ChainWrapper(firstChain);
     }
 
-    void findAll() {
-        firstChain.search(this);
-    }
-
-    void updateInfo() {
-    }
 
     public void wrap(PrivateSpy spy) {
         this.id = spy.id;
@@ -71,6 +83,13 @@ public class PrivateSpy {
         this.logo = spy.logo;
         this.icon = spy.icon;
         this.employees = spy.employees;
+    }
+
+    void findAll() throws JSONException, IOException {
+        firstChain.search(this);
+    }
+
+    void updateInfo() {
     }
 
     void deleteInfo() {

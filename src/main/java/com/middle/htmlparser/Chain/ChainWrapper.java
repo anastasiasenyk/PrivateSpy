@@ -1,5 +1,8 @@
 package com.middle.htmlparser.Chain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ChainWrapper {
     Chain firstChain;
     private static final Chain getSocial = new GetSocial();
