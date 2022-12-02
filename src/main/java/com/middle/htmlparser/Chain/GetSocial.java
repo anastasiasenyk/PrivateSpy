@@ -15,7 +15,7 @@ public class GetSocial implements Chain{
     }
 
     @Override
-    public String search(PrivateSpy spy) {
-        return null;
+    public void search(PrivateSpy spy) {
+        return;
     }
 }
