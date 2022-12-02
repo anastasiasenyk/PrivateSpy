@@ -7,7 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+<<<<<<< HEAD
 import org.json.JSONException;
+=======
+>>>>>>> origin/linndfors
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.web.bind.annotation.RestController;
@@ -90,4 +93,5 @@ public class PrivateSpy {
         this.icon = null;
         this.employees = null;
     }
+
 }

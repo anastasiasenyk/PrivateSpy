@@ -1,11 +1,33 @@
 package com.middle.htmlparser.Social;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
-public class GetFacebook implements Social{
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class GetFacebook implements Social {
+    private String facebook_url = "";
+
+    public String getFacebook_url() {
+        return facebook_url;
+    }
+
     @Override
-    public String search(Document doc) {
-//        implement logic of searching fb link
-        return null;
+    public void search(Document doc) {
+        Elements hrefs = doc.select("a[href^=https://]");
+        Element hrefFacebook = hrefs.select("a[href^=https://www.facebook]").first();
+        String data = String.valueOf(hrefFacebook.attributes());
+        Pattern pattern = Pattern.compile("href=\"(.*?)\"");
+        Matcher match = pattern.matcher(data);
+        try {
+            if (match.find()) {
+                this.facebook_url = match.group(1);
+            }
+        }
+        catch (Exception ex) {
+            return;
+        }
     }
 }

@@ -3,7 +3,6 @@ package com.middle.htmlparser.Chain;
 import com.middle.htmlparser.PrivateSpy.PrivateSpy;
 import com.middle.htmlparser.Social.GetFacebook;
 import com.middle.htmlparser.Social.GetTwitter;
-import com.middle.htmlparser.Social.Social;
 
 public class GetSocial implements Chain{
     private GetFacebook getFB;
@@ -16,6 +15,11 @@ public class GetSocial implements Chain{
 
     @Override
     public void search(PrivateSpy spy) {
-        return;
+        getFB.search(spy.getDocument());
+        String fb_url = getFB.getFacebook_url();
+        spy.setFacebookUrl(fb_url);
+        getTW.search(spy.getDocument());
+        String tw_url = getTW.getTwitter_url();
+        spy.setTwitterUrl(tw_url);
     }
 }
