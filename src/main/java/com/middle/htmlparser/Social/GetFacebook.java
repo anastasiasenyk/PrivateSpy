@@ -18,10 +18,11 @@ public class GetFacebook implements Social {
     public void search(Document doc) {
         Elements hrefs = doc.select("a[href^=https://]");
         Element hrefFacebook = hrefs.select("a[href^=https://www.facebook]").first();
-        String data = String.valueOf(hrefFacebook.attributes());
-        Pattern pattern = Pattern.compile("href=\"(.*?)\"");
-        Matcher match = pattern.matcher(data);
+
         try {
+            String data = String.valueOf(hrefFacebook.attributes());
+            Pattern pattern = Pattern.compile("href=\"(.*?)\"");
+            Matcher match = pattern.matcher(data);
             if (match.find()) {
                 this.facebook_url = match.group(1);
             }
