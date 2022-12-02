@@ -12,7 +12,6 @@ Content-Type: text/plain
 
 mit.edu
 
-
 ###
 POST http://localhost:8080/info
 Content-Type: text/plain
