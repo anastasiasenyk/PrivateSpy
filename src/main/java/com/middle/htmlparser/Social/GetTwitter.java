@@ -9,21 +9,18 @@ import java.util.regex.Pattern;
 
 public class GetTwitter implements Social{
     private String twitter_url = "";
-
     public String getTwitter_url() {
         return twitter_url;
     }
-
-
-
     @Override
     public void search(Document doc) {
         Elements hrefs = doc.select("a[href^=https://]");
         Element hrefTwitter= hrefs.select("a[href^=https://twitter]").first();
-        String data = String.valueOf(hrefTwitter.attributes());
-        Pattern pattern = Pattern.compile("href=\"(.*?)\"");
-        Matcher match = pattern.matcher(data);
+
         try {
+            String data = String.valueOf(hrefTwitter.attributes());
+            Pattern pattern = Pattern.compile("href=\"(.*?)\"");
+            Matcher match = pattern.matcher(data);
             if (match.find()) {
                 this.twitter_url = match.group(1);
             }
