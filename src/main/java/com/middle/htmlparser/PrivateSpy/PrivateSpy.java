@@ -41,10 +41,6 @@ public class PrivateSpy {
     @Transient
     private Document document;
 
-
-    public PrivateSpy(Chain firstChain) throws IOException {
-        this.document = Jsoup.connect(this.domain).get();
-
     public PrivateSpy(int id, String domain, String name, String address, String twitterUrl, String facebookUrl, String logo, String icon, String employees) {
         this.id = id;
         this.domain = domain;
@@ -59,9 +55,10 @@ public class PrivateSpy {
 
 
 
-    public PrivateSpy(Chain firstChain) {
+    public PrivateSpy(Chain firstChain) throws IOException {
         this.firstChain = firstChain;
         this.chainWrapper = new ChainWrapper(firstChain);
+        this.document = Jsoup.connect(this.domain).get();
     }
 
     public void wrap(PrivateSpy spy) {
@@ -93,5 +90,4 @@ public class PrivateSpy {
         this.icon = null;
         this.employees = null;
     }
-
 }

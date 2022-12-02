@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -30,7 +31,7 @@ public class PrivateSpyController {
     }
 
     @PostMapping
-    public void addSpy(@RequestBody String domain) {
+    public void addSpy(@RequestBody String domain) throws JSONException, IOException {
         privateSpyService.addSpy(domain);
     }
 
