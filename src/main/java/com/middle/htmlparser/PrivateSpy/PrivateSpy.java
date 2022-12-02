@@ -1,5 +1,6 @@
 package com.middle.htmlparser.PrivateSpy;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.middle.htmlparser.Chain.Chain;
 import com.middle.htmlparser.Chain.ChainWrapper;
 import com.middle.htmlparser.Chain.GetName;
@@ -41,10 +42,13 @@ public class PrivateSpy {
 
     private String employees;
     @Transient
+    @JsonIgnore
     private Chain firstChain;
     @Transient
+    @JsonIgnore
     private ChainWrapper chainWrapper;
     @Transient
+    @JsonIgnore
     private Document document;
 
     public PrivateSpy(int id, String domain, String name, String address, String twitterUrl, String facebookUrl, String logo, String icon, String employees) {
