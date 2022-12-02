@@ -22,7 +22,7 @@ public class GetMedia implements Chain{
         getLogo = new GetLogo();
         spy.setLogo(getLogo.search(spy));
         spy.setIcon(getIcon.search(spy));
-
+        nextInChain.search(spy);
     }
 
 }

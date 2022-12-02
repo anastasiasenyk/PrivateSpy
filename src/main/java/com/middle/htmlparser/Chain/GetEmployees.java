@@ -1,6 +1,7 @@
 package com.middle.htmlparser.Chain;
 
 import com.middle.htmlparser.PrivateSpy.PrivateSpy;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ public class GetEmployees implements Chain{
     }
 
     @Override
-    public void search(PrivateSpy spy) throws IOException {
+    public void search(PrivateSpy spy) throws IOException, JSONException {
         try {
             String API_KEY = "5610ffe7442d63a7679402fb8245f1ad0dfb481f0eb89ce127ef1c9bc3be3d75";
             String url_query = "SELECT NAME FROM COMPANY WHERE WEBSITE='ucu.edu.ua'";
@@ -33,6 +34,8 @@ public class GetEmployees implements Chain{
         }
         catch (Exception ex) {
             spy.setEmployees("");
+        }finally {
+            nextInChain.search(spy);
         }
     }
 }
