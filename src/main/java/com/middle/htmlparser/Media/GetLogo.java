@@ -13,10 +13,8 @@ import java.util.Scanner;
 public class GetLogo implements GetImg{
     @Override
     public String search(PrivateSpy spy)  throws IOException, JSONException{
-        String domain = spy.getDomain().getDomainName();
         String API_KEY = "2i9AEGZOrYE4I6cCGhLG8erzAZIqlfZbtm8zDBxL4Ok=";
-        domain = "lnu.edu.ua";
-        String query = URLEncoder.encode(domain, StandardCharsets.UTF_8);
+        String query = URLEncoder.encode(spy.getDomainName(), StandardCharsets.UTF_8);
         URL url = new URL("https://api.brandfetch.io/v2/brands/" + query);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
