@@ -10,6 +10,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
+
 public class GetIcon implements GetImg {
     @Override
     public String search(PrivateSpy spy) throws IOException, JSONException {
