@@ -1,6 +1,7 @@
 package com.middle.htmlparser.Chain;
 
 import com.middle.htmlparser.PrivateSpy.PrivateSpy;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;

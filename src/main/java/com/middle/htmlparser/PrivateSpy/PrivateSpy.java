@@ -2,15 +2,13 @@ package com.middle.htmlparser.PrivateSpy;
 
 import com.middle.htmlparser.Chain.Chain;
 import com.middle.htmlparser.Chain.ChainWrapper;
+import com.middle.htmlparser.Chain.GetName;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-<<<<<<< HEAD
 import org.json.JSONException;
-=======
->>>>>>> origin/linndfors
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,11 +19,16 @@ import java.io.IOException;
 @Setter @Getter @ToString
 @RestController
 @Table @Entity
-@NoArgsConstructor
 public class PrivateSpy {
     @Id
     @GeneratedValue
     private int id;
+
+    public void setDomain(String domain) throws IOException {
+        this.domain = domain;
+        this.document = Jsoup.connect(this.domain).get();
+    }
+
     private String domain;
     private String name;
     private String address;
@@ -58,11 +61,11 @@ public class PrivateSpy {
 
 
 
-    public PrivateSpy(Chain firstChain) throws IOException {
-        this.firstChain = firstChain;
+    public PrivateSpy() throws IOException {
+        this.firstChain = new GetName();
         this.chainWrapper = new ChainWrapper(firstChain);
-        this.document = Jsoup.connect(this.domain).get();
     }
+
 
     public void wrap(PrivateSpy spy) {
         this.id = spy.id;

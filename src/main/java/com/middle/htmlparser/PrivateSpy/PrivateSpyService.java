@@ -1,5 +1,7 @@
 package com.middle.htmlparser.PrivateSpy;
 
+import com.middle.htmlparser.Chain.Chain;
+import com.middle.htmlparser.Chain.GetName;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,9 @@ import java.util.Optional;
 @Service
 public class PrivateSpyService {
     public PrivateSpyRepository privateSpyRepository;
-    private PrivateSpy privateSpy;
 
     @Autowired
-    public PrivateSpyService(PrivateSpyRepository privateSpyRepository){
+    public PrivateSpyService(PrivateSpyRepository privateSpyRepository) throws IOException {
         this.privateSpyRepository = privateSpyRepository;
     }
 
@@ -28,6 +29,8 @@ public class PrivateSpyService {
     }
 
     public void addSpy(String domain) throws JSONException, IOException {
+        PrivateSpy privateSpy = new PrivateSpy();
+        privateSpy.setDomain(domain);
         Optional<PrivateSpy> spyOptional = privateSpyRepository.findSpyByDomain(domain);
         if (spyOptional.isPresent()){
             privateSpy.wrap(spyOptional.get());
