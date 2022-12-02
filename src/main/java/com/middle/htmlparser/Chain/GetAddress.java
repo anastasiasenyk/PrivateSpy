@@ -1,7 +1,6 @@
 package com.middle.htmlparser.Chain;
 
 import com.middle.htmlparser.PrivateSpy.PrivateSpy;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -32,6 +31,7 @@ public class GetAddress implements Chain{
                 spy.setAddress(address);
             }
         }
+
         catch (Exception ex) {
             try {
                 String API_KEY = "5610ffe7442d63a7679402fb8245f1ad0dfb481f0eb89ce127ef1c9bc3be3d75";
