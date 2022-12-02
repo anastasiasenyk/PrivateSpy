@@ -35,7 +35,7 @@ public class GetAddress implements Chain{
         catch (Exception ex) {
             try {
                 String API_KEY = "5610ffe7442d63a7679402fb8245f1ad0dfb481f0eb89ce127ef1c9bc3be3d75";
-                String url_query = "SELECT NAME FROM COMPANY WHERE WEBSITE='ucu.edu.ua'";
+                String url_query = "SELECT NAME FROM COMPANY WHERE WEBSITE='" + spy.getDomain().getUrl() + "'";
                 String query = URLEncoder.encode(url_query, StandardCharsets.UTF_8);
                 URL url = new URL("https://api.peopledatalabs.com/v5/company/search?sql=" + query);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();

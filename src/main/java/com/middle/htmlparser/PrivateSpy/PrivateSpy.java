@@ -4,13 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.middle.htmlparser.Chain.Chain;
 import com.middle.htmlparser.Chain.ChainWrapper;
 import com.middle.htmlparser.Chain.GetName;
+import com.middle.htmlparser.Fields.Domain;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.json.JSONException;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,22 +24,24 @@ public class PrivateSpy {
     @Id
     @GeneratedValue
     private int id;
+    @Transient
+    @JsonIgnore
+    private Domain domain;
+    private String domainName;
 
     public void setDomain(String domain) throws IOException {
-        this.domain = domain;
-        this.document = Jsoup.connect(this.domain).get();
+        this.domain = new Domain(domain);
+        this.domainName = this.domain.getDomainName();
+        this.document = this.domain.jsoupConnect();
     }
 
-    private String domain;
+
     private String name;
     private String address;
-
     private String twitterUrl;
     private String facebookUrl;
-
     private String logo;
     private String icon;
-
     private String employees;
     @Transient
     @JsonIgnore
@@ -54,7 +55,7 @@ public class PrivateSpy {
 
     public PrivateSpy(int id, String domain, String name, String address, String twitterUrl, String facebookUrl, String logo, String icon, String employees) {
         this.id = id;
-        this.domain = domain;
+        this.domain.setDomain(domain);
         this.name = name;
         this.address = address;
         this.twitterUrl = twitterUrl;
@@ -93,7 +94,7 @@ public class PrivateSpy {
     }
 
     void deleteInfo() {
-        this.domain = null;
+        this.domain = new Domain();
         this.name = null;
         this.address = null;
         this.twitterUrl = null;

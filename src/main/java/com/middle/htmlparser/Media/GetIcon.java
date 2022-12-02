@@ -19,7 +19,7 @@ public class GetIcon implements GetImg {
     @Override
     public String search(PrivateSpy spy) throws IOException, JSONException {
 //        implement logic of searching for Icon
-        String domain = spy.getDomain();
+        String domain = spy.getDomain().getDomainName();
         String API_KEY = "2i9AEGZOrYE4I6cCGhLG8erzAZIqlfZbtm8zDBxL4Ok=";
         domain = "lnu.edu.ua";
         String query = URLEncoder.encode(domain, StandardCharsets.UTF_8);

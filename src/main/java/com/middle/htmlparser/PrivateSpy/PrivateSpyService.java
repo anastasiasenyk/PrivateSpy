@@ -38,7 +38,6 @@ public class PrivateSpyService {
             privateSpy.deleteInfo();
             privateSpy.findAll();
         }
-
         privateSpyRepository.save(privateSpy);
     }
 
