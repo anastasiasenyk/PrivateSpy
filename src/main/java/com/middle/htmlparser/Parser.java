@@ -12,6 +12,7 @@ public class Parser {
         String a[] = {"https://medcenter.lviv.ua/", "https://khmilclinic.com.ua/", "https://lpnu.ua/", "https://kpi.ua/", "https://lnu.edu.ua/en/", "https://dou.ua/", "https://nmuofficial.com/"};
         final String url = "https://kubg.edu.ua/";
         final Document document = Jsoup.connect(url).get();
+        Finder g = new Finder();
 
 //        String address = "";
 
