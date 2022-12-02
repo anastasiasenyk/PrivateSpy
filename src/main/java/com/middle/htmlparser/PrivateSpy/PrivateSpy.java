@@ -21,6 +21,7 @@ import java.io.IOException;
 @RestController
 @Table @Entity
 public class PrivateSpy {
+    public static int num_inst=5;
     @Id
     @GeneratedValue
     private int id;
@@ -66,6 +67,7 @@ public class PrivateSpy {
 
 
     public PrivateSpy() throws IOException {
+
         this.firstChain = new GetName();
         this.chainWrapper = new ChainWrapper(firstChain);
     }
