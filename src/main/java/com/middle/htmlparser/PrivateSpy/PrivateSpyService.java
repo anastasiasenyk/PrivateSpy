@@ -1,7 +1,5 @@
 package com.middle.htmlparser.PrivateSpy;
 
-import com.middle.htmlparser.Chain.Chain;
-import com.middle.htmlparser.Chain.GetName;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +34,7 @@ public class PrivateSpyService {
             privateSpy.wrap(spyOptional.get());
         } else {
             int id = privateSpy.getId();
-            privateSpy.setId(++id);
+            privateSpy.setId(PrivateSpy.num_inst++);
             privateSpy.deleteInfo();
             privateSpy.findAll();
         }
