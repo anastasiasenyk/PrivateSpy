@@ -21,8 +21,13 @@ public class GetFacebook implements Social {
         String data = String.valueOf(hrefFacebook.attributes());
         Pattern pattern = Pattern.compile("href=\"(.*?)\"");
         Matcher match = pattern.matcher(data);
-        if (match.find()) {
-            this.facebook_url = match.group(1);
+        try {
+            if (match.find()) {
+                this.facebook_url = match.group(1);
+            }
+        }
+        catch (Exception ex) {
+            return;
         }
     }
 }

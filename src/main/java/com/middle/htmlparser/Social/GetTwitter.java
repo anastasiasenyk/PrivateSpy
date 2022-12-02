@@ -23,8 +23,13 @@ public class GetTwitter implements Social{
         String data = String.valueOf(hrefTwitter.attributes());
         Pattern pattern = Pattern.compile("href=\"(.*?)\"");
         Matcher match = pattern.matcher(data);
-        if (match.find()) {
-            this.twitter_url = match.group(1);
+        try {
+            if (match.find()) {
+                this.twitter_url = match.group(1);
+            }
+        }
+        catch (Exception ex) {
+            return;
         }
     }
 }

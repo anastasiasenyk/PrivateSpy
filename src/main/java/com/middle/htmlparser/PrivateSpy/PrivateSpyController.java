@@ -3,6 +3,7 @@ package com.middle.htmlparser.PrivateSpy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -23,7 +24,7 @@ public class PrivateSpyController {
     }
 
     @PostMapping
-    public void addSpy(@RequestBody String domain) {
+    public void addSpy(@RequestBody String domain) throws IOException {
         privateSpyService.addSpy(domain);
     }
 

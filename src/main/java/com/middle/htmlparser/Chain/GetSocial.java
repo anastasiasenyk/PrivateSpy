@@ -15,11 +15,11 @@ public class GetSocial implements Chain{
 
     @Override
     public void search(PrivateSpy spy) {
-        getFB = new GetFacebook();
         getFB.search(spy.getDocument());
         String fb_url = getFB.getFacebook_url();
-        getTW = new GetTwitter();
+        spy.setFacebookUrl(fb_url);
         getTW.search(spy.getDocument());
         String tw_url = getTW.getTwitter_url();
+        spy.setTwitterUrl(tw_url);
     }
 }

@@ -4,6 +4,7 @@ import com.middle.htmlparser.Chain.Chain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +23,7 @@ public class PrivateSpyService {
         return privateSpyRepository.findAll();
     }
 
-    public void addSpy(String domain) {
+    public void addSpy(String domain) throws IOException {
         Optional<PrivateSpy> spyOptional = privateSpyRepository.findSpyByDomain(domain);
         if (spyOptional.isPresent()){
             privateSpy.wrap(spyOptional.get());

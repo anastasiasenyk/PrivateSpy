@@ -11,7 +11,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.beans.Transient;
+
 import java.io.IOException;
 
 
@@ -61,7 +61,7 @@ public class PrivateSpy {
         this.employees = spy.employees;
     }
 
-    void findAll() {
+    void findAll() throws IOException {
         firstChain.search(this);
     }
 
