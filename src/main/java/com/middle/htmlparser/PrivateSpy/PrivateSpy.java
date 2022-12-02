@@ -25,6 +25,7 @@ public class PrivateSpy {
     @GeneratedValue
     private int id;
     @Transient
+    @JsonIgnore
     private Domain domain;
     private String domainName;
 
