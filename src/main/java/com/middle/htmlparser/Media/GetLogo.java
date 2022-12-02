@@ -9,7 +9,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
-import org.jsoup.nodes.Document;
 
 public class GetLogo implements GetImg{
     @Override
