@@ -8,8 +8,8 @@ import org.json.JSONException;
 import java.io.IOException;
 
 public class GetSocial implements Chain{
-    private GetFacebook getFB;
-    private GetTwitter getTW;
+    private GetFacebook getFB = new GetFacebook();
+    private GetTwitter getTW = new GetTwitter();
     private Chain nextInChain;
     @Override
     public void setNextChain(Chain chain) {
