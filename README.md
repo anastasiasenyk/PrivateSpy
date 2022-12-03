@@ -1,7 +1,12 @@
 # PrivatSpy
 
+### Authors: Senyk Anastasiia, Kocherkevych Victoria, Nahurna Olha, Prytula Matvii
+
+
 ## Design Patterns Used
 Generally in order to implement the main logic of finding information for the user request we used Chain of responsibility design pattern. It helps us sequently search for the information units(such as twitter url, logo or address) and each class of chain after its job is done, calls the next one in chain, so that it can search for next piece of information.
+
+Moreover, in order to set the whole chain, we used ChainWrapper which is basically the builder pattern, as it connects all the units of a chain and return complete first "vertex" 
 
 Additionally, we know that the algorithm for finding Facebook and Twitter url is similar, but still differs a bit. Therefore, we used Strategy pattern to here. Same goes for finding logo and icon of the domain.(The interfaces are Social and GetImg respectively).
 
@@ -11,10 +16,22 @@ In order to use the application, one has to send Post request with domain name, 
 
 To see the available domains, that are all stored in the connected sql database, the get request is needed.
 
+## UML & USERCASE diagram
+
+![](src/main/java/com/middle/htmlparser/images/Diagram.png)
+![](src/main/java/com/middle/htmlparser/images/Diagram2.png)
+
 
 ## Usage example
 **is presented in test.http**
 
+
+## Heroku link
+https://radiant-coast-85006.herokuapp.com/info
+
+
+
+![](src/main/java/com/middle/htmlparser/images/Screenshot 2022-12-02 at 23.51.26.png)![](src/main/java/com/middle/htmlparser/images/Screenshot 2022-12-02 at 23.51.44.png)
 
 
 
