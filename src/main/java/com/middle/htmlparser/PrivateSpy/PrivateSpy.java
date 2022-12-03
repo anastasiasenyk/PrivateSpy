@@ -28,14 +28,6 @@ public class PrivateSpy {
     @JsonIgnore
     private Domain domain;
     private String domainName;
-
-    public void setDomain(String domain) throws IOException {
-        this.domain = new Domain(domain);
-        this.domainName = this.domain.getDomainName();
-        this.document = this.domain.jsoupConnect();
-    }
-
-
     private String name;
     private String address;
     private String twitterUrl;
@@ -52,6 +44,12 @@ public class PrivateSpy {
     @Transient
     @JsonIgnore
     private Document document;
+
+    public void setDomain(String domain) throws IOException {
+        this.domain = new Domain(domain);
+        this.domainName = this.domain.getDomainName();
+        this.document = this.domain.jsoupConnect();
+    }
 
     public PrivateSpy(int id, String domain, String name, String address, String twitterUrl, String facebookUrl, String logo, String icon, String employees) {
         this.id = id;
@@ -103,5 +101,4 @@ public class PrivateSpy {
         this.icon = null;
         this.employees = null;
     }
-
 }
