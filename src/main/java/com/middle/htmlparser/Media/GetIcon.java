@@ -15,7 +15,7 @@ public class GetIcon implements GetImg {
     @Override
     public String search(PrivateSpy spy) throws IOException, JSONException {
 //        implement logic of searching for Icon
-        String API_KEY = "2i9AEGZOrYE4I6cCGhLG8erzAZIqlfZbtm8zDBxL4Ok=";
+        String API_KEY = "*********************************";
         String query = URLEncoder.encode(spy.getDomainName(), StandardCharsets.UTF_8);
         URL url = new URL("https://api.brandfetch.io/v2/brands/" + query);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
