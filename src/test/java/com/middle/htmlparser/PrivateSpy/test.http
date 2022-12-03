@@ -1,0 +1,29 @@
+GET http://localhost:8080/info
+
+###
+POST http://localhost:8080/info
+Content-Type: text/plain
+
+ucu.edu.ua
+
+###
+POST http://localhost:8080/info
+Content-Type: text/plain
+
+mit.edu
+
+
+###
+POST http://localhost:8080/info
+Content-Type: text/plain
+
+lnu.edu.ua
+
+
+###
+POST http://localhost:8080/info
+Content-Type: text/plain
+
+softserveinc.com
+
+
